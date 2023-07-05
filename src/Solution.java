@@ -232,6 +232,30 @@ public class Solution {
     }
 
     /**
+     * 2600. K 件物品的最大和
+     * @param numOnes
+     * @param numZeros
+     * @param numNegOnes
+     * @param k
+     * @return
+     */
+    public int kItemsWithMaximumSum(int numOnes, int numZeros, int numNegOnes, int k) {
+        int sum = 0;
+        for(int i = 0; i < k; i++){
+            if(numOnes > 0){
+                sum += 1;
+                numOnes -= 1;
+            }else if(numZeros > 0){
+                numZeros -= 1;
+            }else if(numNegOnes > 0){
+                sum -= 1;
+                numNegOnes -= 1;
+            }
+        }
+        return sum;
+    }
+
+    /**
      * 2679. 矩阵中的和
      * @param nums
      * @return

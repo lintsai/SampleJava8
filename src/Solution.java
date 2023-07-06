@@ -198,6 +198,31 @@ public class Solution {
     }
 
     /**
+     * 2178. 拆分成最多数目的正偶数之和
+     * @param finalSum
+     * @return
+     */
+    public List<Long> maximumEvenSplit(long finalSum) {
+        List<Long> finalList = new ArrayList<>();
+        if((finalSum % 2) != 0){
+            return finalList;
+        }
+        int i = 1;
+        while(true){
+            long num = i * 2L;
+            finalList.add(num);
+            finalSum -= num;
+            if(finalSum <= num){
+                break;
+            }
+            i++;
+        }
+        int size = finalList.size();
+        finalList.set(size-1, finalList.get(size-1) + finalSum);
+        return finalList;
+    }
+
+    /**
      * 2235. 两整数相加
      * @param num1
      * @param num2

@@ -83,6 +83,29 @@ public class Solution {
     }
 
     /**
+     * 167. 两数之和 II - 输入有序数组
+     * @param numbers
+     * @param target
+     * @return
+     */
+    public int[] twoSumII(int[] numbers, int target) {
+        for(int i = 0; i < numbers.length; i++){
+            int main = numbers[i];
+            for(int j = 0; j < numbers.length; j++){
+                if(i != j){
+                    int sub = numbers[j];
+                    if((main+sub) == target){
+                        int[] nums = {i+1,j+1};
+                        return nums;
+                    }
+                }
+            }
+        }
+        int[] nums = {};
+        return nums;
+    }
+
+    /**
      * 445. 两数相加 II
      * @param l1
      * @param l2

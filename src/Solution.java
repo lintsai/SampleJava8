@@ -83,6 +83,42 @@ public class Solution {
     }
 
     /**
+     * 15. 三数之和
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> threeSum(int[] nums) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        List<List<Integer>> finalList = new ArrayList<>();
+        for(int i = 0; i < n; i++){
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            int k = n - 1;
+            for(int j = i + 1; j < n; j++){
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
+                    continue;
+                }
+                while(j < k && nums[j] + nums[k] > -nums[i]){
+                    k--;
+                }
+                if(j == k){
+                    break;
+                }
+                if (i != j && i != k && j != k && (nums[i]+nums[j]+nums[k]) == 0){
+                    List<Integer> numsList = new ArrayList<>();
+                    numsList.add(nums[i]);
+                    numsList.add(nums[j]);
+                    numsList.add(nums[k]);
+                    finalList.add(numsList);
+                }
+            }
+        }
+        return finalList;
+    }
+
+    /**
      * 167. 两数之和 II - 输入有序数组
      * @param numbers
      * @param target

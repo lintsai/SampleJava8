@@ -119,6 +119,65 @@ public class Solution {
     }
 
     /**
+     * 16. 最接近的三数之和
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int threeSumClosest(int[] nums, int target) {
+        Integer[] numInts = Arrays.stream(nums).boxed().toArray(Integer[]::new);
+        if(target > 0){
+            Arrays.sort(numInts,java.util.Collections.reverseOrder());
+        }else{
+            Arrays.sort(numInts);
+        }
+        int n = numInts.length;
+        int finalSum = 0;
+        for(int i = 0; i < n; i++){
+            for(int j = i + 1; j < n; j++){
+                for(int k = j + 1; k < n; k++){
+                    if(i == j || i == k || j == k){
+                        continue;
+                    }
+                    int sum = numInts[i]+numInts[j]+numInts[k];
+                    int diff = 0;
+                    if(target > sum){
+                        diff = target - sum;
+                    }else if(target < sum){
+                        diff = sum - target;
+                    }
+                    int finalDiff = 0;
+                    if(target > finalSum){
+                        finalDiff = target - finalSum;
+                    }else if(target < finalSum){
+                        finalDiff = finalSum - target;
+                    }
+                    if(diff < 0){
+                        diff = -diff;
+                    }
+                    if(finalDiff < 0){
+                        finalDiff = -finalDiff;
+                    }
+                    if(finalSum == 0 || diff <= finalDiff){
+                        finalSum = sum;
+                    }else{
+                        if(target > 0){
+                            if(numInts[i] < 0 && numInts[j] < 0 && numInts[k] < 0){
+                                break;
+                            }
+                        }else{
+                            if(numInts[i] > 0 && numInts[j] > 0 && numInts[k] > 0){
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return finalSum;
+    }
+
+    /**
      * 167. 两数之和 II - 输入有序数组
      * @param numbers
      * @param target

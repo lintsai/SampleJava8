@@ -316,6 +316,21 @@ public class Solution {
     }
 
     /**
+     * 1911. 最大子序列交替和
+     * @param nums
+     * @return
+     */
+    public long maxAlternatingSum(int[] nums) {
+        long sum = nums[0];
+        long keep = 0;
+        for (int i = 1; i < nums.length; i++) {
+            sum = Math.max(sum, keep + nums[i]);
+            keep = Math.max(keep, sum - nums[i]);
+        }
+        return sum;
+    }
+
+    /**
      * 2178. 拆分成最多数目的正偶数之和
      * @param finalSum
      * @return

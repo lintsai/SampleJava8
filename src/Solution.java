@@ -390,6 +390,21 @@ public class Solution {
     }
 
     /**
+     * 2544. 交替数字和
+     * @param n
+     * @return
+     */
+    public int alternateDigitSum(int n) {
+        int num = 0, key = 1;
+        while (n > 0) {
+            num += n % 10 * key;
+            key = -key;
+            n /= 10;
+        }
+        return -key * num;
+    }
+
+    /**
      * 2600. K 件物品的最大和
      * @param numOnes
      * @param numZeros
